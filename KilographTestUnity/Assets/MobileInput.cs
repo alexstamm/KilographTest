@@ -6,9 +6,7 @@ public class MobileInput : MonoBehaviour
 {
 
     private bool gyroState;
-    private bool dragScreen;
-    private Vector2 screenPos;
-
+ 
     private float width;
     private float height;
 
@@ -30,12 +28,9 @@ public class MobileInput : MonoBehaviour
         height = (float)Screen.height / 2.0f;
 
         gyroState = false;
-        dragScreen = false;
 
         x = 0.0f;
-        y = 0.0f;
-
-        
+        y = 0.0f;       
     }
 
     // Update is called once per frame
@@ -53,42 +48,16 @@ public class MobileInput : MonoBehaviour
 
     private void TouchRotation()
     {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    dragScreen = true;
-        //    firstPoint = Camera.main.WorldToScreenPoint(Input.mousePosition);
-        //    xTemp = x;
-        //    yTemp = y;
-        //}
-        //else if (Input.GetMouseButtonUp(0))
-        //{
-        //    dragScreen = false;
-        //}
-
-        //if (dragScreen)
-        //{
-        //    secondPoint = Camera.main.WorldToScreenPoint(Input.mousePosition);
-        //    Debug.Log(secondPoint);
-        //    x = (float)(xTemp + (secondPoint.x - firstPoint.x) * 180.0f / (float)Screen.width) * .01f;
-        //    y = (float)(yTemp + (secondPoint.y - firstPoint.y) * 90.0f / (float)Screen.height) * .01f;
-
-        //    transform.rotation = Quaternion.Euler(x, y, 0.0f);
-        //}
-
-
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
 
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                dragScreen = true;
                 firstPoint = Input.GetTouch(0).position;
                 xTemp = x;
                 yTemp = y;
             }
-
-            
 
             if (Input.GetTouch(0).phase == TouchPhase.Moved)
             {
@@ -98,9 +67,6 @@ public class MobileInput : MonoBehaviour
                 transform.rotation = Quaternion.Euler(x, y, 0.0f);
             }
         }
-
-
-
 
     }
 
